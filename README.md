@@ -7,7 +7,6 @@ Learn Apache Spark through its **Python** (PySpark) API by running the Jupyter n
 
 - [Quick Start](#quick-start)
 - [Reference](#reference)
-- [Contributors](#contributors)
 
 ## <a name="quick-start"></a>Quick Start
 
@@ -39,5 +38,5 @@ docker-compose down
 ```
 
 ## <a name="reference"></a>Reference
-[Andre Marcos Perez](https://github.com/cluster-apps-on-docker/spark-standalone-cluster-on-docker)
-[Big Data Europe](https://github.com/big-data-europe/docker-hadoop)
+- [Andre Marcos Perez](https://github.com/cluster-apps-on-docker/spark-standalone-cluster-on-docker)
+- [Big Data Europe](https://github.com/big-data-europe/docker-hadoop)
