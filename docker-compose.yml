@@ -12,6 +12,8 @@ services:
       - ./hadoop.env
     ports:
       - '9870:9870'
+    networks:
+      - net
 
   resourcemanager:
     image: fixcer/resourcemanager
@@ -26,6 +28,8 @@ services:
       - ./hadoop.env
     ports:
       - '8089:8088'
+    networks:
+      - net
 
   historyserver:
     image: fixcer/historyserver
@@ -40,6 +44,8 @@ services:
       - ./hadoop.env
     ports:
       - '8188:8188'
+    networks:
+      - net
 
   nodemanager:
     image: fixcer/nodemanager
@@ -52,6 +58,8 @@ services:
       - ./hadoop.env
     ports:
       - '8042:8042'
+    networks:
+      - net
 
   datanode1:
     image: fixcer/datanode
@@ -62,6 +70,8 @@ services:
       - hadoop_datanode1:/hadoop/dfs/data
     env_file:
       - ./hadoop.env
+    networks:
+      - net
 
   datanode2:
     image: fixcer/datanode
@@ -72,6 +82,8 @@ services:
       - hadoop_datanode2:/hadoop/dfs/data
     env_file:
       - ./hadoop.env
+    networks:
+      - net
 
   datanode3:
     image: fixcer/datanode
@@ -82,18 +94,23 @@ services:
       - hadoop_datanode3:/hadoop/dfs/data
     env_file:
       - ./hadoop.env
+    networks:
+      - net
 
   spark-master:
     image: fixcer/spark-master
-    container_name: spark-master
+    container_name: spark_master
     ports:
       - 8080:8080
       - 7077:7077
     env_file:
       - ./hadoop.env
+    networks:
+      - net
 
   spark-worker:
     image: fixcer/spark-worker
+    container_name: spark_worker
     depends_on:
       - spark-master
     environment:
@@ -102,6 +119,8 @@ services:
       - 8081:8081
     env_file:
       - ./hadoop.env
+    networks:
+      - net
 
   zookeeper:
     image: wurstmeister/zookeeper
@@ -110,6 +129,8 @@ services:
       - '2181'
     ports:
       - 2181:2181
+    networks:
+      - net
 
   kafka:
     image: wurstmeister/kafka
@@ -130,18 +151,8 @@ services:
       KAFKA_LISTENERS: INSIDE://:9092,OUTSIDE://0.0.0.0:19092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
-
-  pyspark:
-    image: jupyter/pyspark-notebook
-    container_name: pyspark-notebook
-    ports:
-      - '8888:8888'
-    depends_on:
-      - 'kafka'
-    links:
-      - kafka
-    volumes:
-      - ./spark-lab/:/home/jovyan/work/
+    networks:
+      - net
 
   kafka_manager:
     image: hlebalbau/kafka-manager:1.3.3.18
@@ -160,6 +171,47 @@ services:
     depends_on:
       - 'zookeeper'
       - 'kafka'
+    networks:
+      - net
+
+  hue:
+    container_name: hue
+    image: gethue/hue
+    ports:
+      - '8088:8888'
+    env_file:
+      - ./hadoop.env
+    volumes:
+      - ./hue.ini:/usr/share/hue/desktop/conf/hue-overrides.ini
+    depends_on:
+      - namenode
+    networks:
+      - net
+
+  # Jupyter Notebook
+  # jupyter:
+  #   image: jupyter/pyspark-notebook
+  #   container_name: jupyter
+  #   ports:
+  #     - 8888:8888
+  #   depends_on:
+  #     - 'kafka'
+  #   links:
+  #     - kafka
+  #   volumes:
+  #     - ./spark-lab/:/home/jovyan/work/
+  #   networks:
+  #     - net
+
+  jupyterlab:
+    image: andreper/jupyterlab:2.1.4-spark-3.0.0
+    container_name: jupyterlab
+    ports:
+      - 8888:8888
+    volumes:
+      - ./spark-lab/:/opt/workspace/
+    networks:
+      - net
 
 volumes:
   hadoop_namenode:
@@ -167,3 +219,6 @@ volumes:
   hadoop_datanode2:
   hadoop_datanode3:
   hadoop_historyserver:
+
+networks:
+  net:
