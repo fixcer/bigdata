@@ -6,7 +6,6 @@ Learn Apache Spark through its **Python** (PySpark) API by running the Jupyter n
 ## Contents
 
 - [Quick Start](#quick-start)
-- [Tech Stack](#tech-stack)
 - [Contributing](#contributing)
 - [Contributors](#contributors)
 
@@ -14,13 +13,13 @@ Learn Apache Spark through its **Python** (PySpark) API by running the Jupyter n
 
 ### Cluster overview
 
-| Application            | URL                                      | Description                                                |
-| ---------------------- | ---------------------------------------- | ---------------------------------------------------------- |
-| Hadoop                 | [localhost:9870](http://localhost:9870/) |                                                            |
-| YARN                   | [localhost:8089](http://localhost:8089/) |                                                            |
-| HUE                    | [localhost:8088](http://localhost:8088/) |                                                            |
-| JupyterLab             | [localhost:8888](http://localhost:8888/) | Cluster interface with built-in Jupyter notebooks          |
-| Apache Spark Master    | [localhost:8080](http://localhost:8080/) | Spark Master node                                          |
+| Application            | URL                                      |
+| ---------------------- | ---------------------------------------- |
+| Hadoop                 | [localhost:9870](http://localhost:9870/) |
+| YARN                   | [localhost:8089](http://localhost:8089/) |
+| HUE                    | [localhost:8088](http://localhost:8088/) |
+| JupyterLab             | [localhost:8888](http://localhost:8888/) |
+| Apache Spark Master    | [localhost:8080](http://localhost:8080/) |
 
 ### Prerequisites
 
@@ -28,8 +27,8 @@ Learn Apache Spark through its **Python** (PySpark) API by running the Jupyter n
  
  ### Build from Docker Hub
 
-1. Download the source code or clone the repository;
-2. Build the cluster;
+1. Download the source code or clone the repository
+2. Build the cluster
 
 ```bash
 docker-compose up -d
