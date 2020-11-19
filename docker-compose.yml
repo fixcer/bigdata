@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   namenode:
@@ -105,6 +105,10 @@ services:
       - 7077:7077
     env_file:
       - ./hadoop.env
+    environment:
+      - PYSPARK_PYTHON=python3
+      - PYSPARK_DRIVER_PYTHON=python3
+      - INIT_DAEMON_STEP=setup_spark
     networks:
       - net
 
@@ -113,12 +117,14 @@ services:
     container_name: spark_worker
     depends_on:
       - spark-master
-    environment:
-      - SPARK_MASTER=spark://spark-master:7077
-    ports:
-      - 8081:8081
     env_file:
       - ./hadoop.env
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+      - PYSPARK_PYTHON=python3
+      - PYSPARK_DRIVER_PYTHON=python3
+    ports:
+      - 8081:8081
     networks:
       - net
 
