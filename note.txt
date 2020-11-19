@@ -1,0 +1,3 @@
+spark-submit theo template thì không cần file requirements.txt, nhưng làm trên jupyter cần đi vào từng worker để cài packages.
+Tạm thời làm theo cách 2, cách 1 chỉ làm khi nộp báo cáo. Các worker sử dụng ubuntu:18.04 và python3.7 tương tự môi trường trên máy thật.
+Không cần pip3 vì đã alias pip=pip3
