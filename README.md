@@ -15,7 +15,7 @@ Learn Apache Spark through its **Python** (PySpark) API by running the Jupyter n
 | Application            | URL                                      |
 | ---------------------- | ---------------------------------------- |
 | Hadoop                 | [localhost:9870](http://localhost:9870/) |
-| YARN                   | [localhost:8089](http://localhost:8089/) |
+| MapReduce              | [localhost:8089](http://localhost:8089/) |
 | HUE                    | [localhost:8088](http://localhost:8088/) |
 | JupyterLab             | [localhost:8888](http://localhost:8888/) |
 | Apache Spark Master    | [localhost:8080](http://localhost:8080/) |
@@ -39,4 +39,5 @@ docker-compose down
 
 ## <a name="reference"></a>Reference
 - [Andre Marcos Perez](https://github.com/cluster-apps-on-docker/spark-standalone-cluster-on-docker)
-- [Big Data Europe](https://github.com/big-data-europe/docker-hadoop)
+- [Big Data Europe - Hadoop Docker](https://github.com/big-data-europe/docker-hadoop)
+- [Big Data Europe - Spark Docker](https://github.com/big-data-europe/docker-spark)
