@@ -1,2 +1,4 @@
-/spark-lab/data/*
-/spark-lab/.ipynb_checkpoints/*
+spark-lab/data/*
+spark-lab/.ipynb_checkpoints/*
+data/*
+spark-lab/Sentiments/*

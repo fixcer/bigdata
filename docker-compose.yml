@@ -181,8 +181,8 @@ services:
       - net
 
   hue:
-    container_name: hue
     image: gethue/hue
+    container_name: hue
     ports:
       - '8088:8888'
     env_file:
@@ -194,20 +194,199 @@ services:
     networks:
       - net
 
-  # Jupyter Notebook
-  # jupyter:
-  #   image: jupyter/pyspark-notebook
-  #   container_name: jupyter
-  #   ports:
-  #     - 8888:8888
-  #   depends_on:
-  #     - 'kafka'
-  #   links:
-  #     - kafka
-  #   volumes:
-  #     - ./spark-lab/:/home/jovyan/work/
-  #   networks:
-  #     - net
+  ## Mongo Cluster
+
+  ## Router
+  router01:
+    image: mongo
+    container_name: router01
+    command: mongos --port 27017 --configdb rs-config-server/configsvr01:27017,configsvr02:27017,configsvr03:27017 --bind_ip_all
+    ports:
+      - 27017:27017
+    volumes:
+      - ./scripts:/scripts
+      - data_router01:/data/db
+    networks:
+      - net
+
+  router02:
+    image: mongo
+    container_name: router02
+    command: mongos --port 27017 --configdb rs-config-server/configsvr01:27017,configsvr02:27017,configsvr03:27017 --bind_ip_all
+    volumes:
+      - ./scripts:/scripts
+      - data_router02:/data/db
+    ports:
+      - 27018:27017
+    links:
+      - router01
+    networks:
+      - net
+
+  ## Config Servers
+  configsvr01:
+    image: mongo
+    container_name: configsvr01
+    command: mongod --port 27017 --configsvr --replSet rs-config-server
+    volumes:
+      - ./scripts:/scripts
+      - data_configsvr01:/data/db
+    ports:
+      - 27019:27017
+    links:
+      - shard01-a
+      - shard02-a
+      - shard03-a
+    networks:
+      - net
+
+  configsvr02:
+    image: mongo
+    container_name: configsvr02
+    command: mongod --port 27017 --configsvr --replSet rs-config-server
+    volumes:
+      - ./scripts:/scripts
+      - data_configsvr02:/data/db
+    ports:
+      - 27020:27017
+    links:
+      - configsvr01
+    networks:
+      - net
+
+  configsvr03:
+    image: mongo
+    container_name: configsvr03
+    command: mongod --port 27017 --configsvr --replSet rs-config-server
+    volumes:
+      - ./scripts:/scripts
+      - data_configsvr03:/data/db
+    ports:
+      - 27021:27017
+    links:
+      - configsvr02
+    networks:
+      - net
+
+  ## Shards
+  shard01-a:
+    image: mongo
+    container_name: shard01-a
+    command: mongod --port 27017 --shardsvr --replSet rs-shard-01
+    volumes:
+      - ./scripts:/scripts
+      - data_shard01-a:/data/db
+    ports:
+      - 27022:27017
+    links:
+      - shard01-b
+      - shard01-c
+    networks:
+      - net
+
+  shard01-b:
+    image: mongo
+    container_name: shard01-b
+    command: mongod --port 27017 --shardsvr --replSet rs-shard-01
+    volumes:
+      - ./scripts:/scripts
+      - data_shard01-b:/data/db
+    ports:
+      - 27023:27017
+    networks:
+      - net
+
+  shard01-c:
+    image: mongo
+    container_name: shard01-c
+    command: mongod --port 27017 --shardsvr --replSet rs-shard-01
+    volumes:
+      - ./scripts:/scripts
+      - data_shard01-c:/data/db
+    ports:
+      - 27024:27017
+    networks:
+      - net
+
+  ## Shards 02
+  shard02-a:
+    image: mongo
+    container_name: shard02-a
+    command: mongod --port 27017 --shardsvr --replSet rs-shard-02
+    volumes:
+      - ./scripts:/scripts
+      - data_shard02-a:/data/db
+    ports:
+      - 27025:27017
+    links:
+      - shard02-b
+      - shard02-c
+    networks:
+      - net
+
+  shard02-b:
+    image: mongo
+    container_name: shard02-b
+    command: mongod --port 27017 --shardsvr --replSet rs-shard-02
+    volumes:
+      - ./scripts:/scripts
+      - data_shard02-b:/data/db
+    ports:
+      - 27026:27017
+    networks:
+      - net
+
+  shard02-c:
+    image: mongo
+    container_name: shard02-c
+    command: mongod --port 27017 --shardsvr --replSet rs-shard-02
+    volumes:
+      - ./scripts:/scripts
+      - data_shard02-c:/data/db
+    ports:
+      - 27027:27017
+    networks:
+      - net
+
+  ## Shards 03
+  shard03-a:
+    image: mongo
+    container_name: shard03-a
+    command: mongod --port 27017 --shardsvr --replSet rs-shard-03
+    volumes:
+      - ./scripts:/scripts
+      - data_shard03-a:/data/db
+    ports:
+      - 27028:27017
+    links:
+      - shard03-b
+      - shard03-c
+    networks:
+      - net
+
+  shard03-b:
+    image: mongo
+    container_name: shard03-b
+    command: mongod --port 27017 --shardsvr --replSet rs-shard-03
+    volumes:
+      - ./scripts:/scripts
+      - data_shard03-b:/data/db
+    ports:
+      - 27029:27017
+    networks:
+      - net
+
+  shard03-c:
+    image: mongo
+    container_name: shard03-c
+    command: mongod --port 27017 --shardsvr --replSet rs-shard-03
+    volumes:
+      - ./scripts:/scripts
+      - data_shard03-c:/data/db
+    ports:
+      - 27030:27017
+    networks:
+      - net
 
   jupyterlab:
     image: andreper/jupyterlab:2.1.4-spark-3.0.0
@@ -225,6 +404,25 @@ volumes:
   hadoop_datanode2:
   hadoop_datanode3:
   hadoop_historyserver:
+  data_router01:
+  data_router02:
+  data_configsvr01:
+  data_configsvr02:
+  data_configsvr03:
+  data_shard01-a:
+  data_shard01-b:
+  data_shard01-c:
+  data_shard02-a:
+  data_shard02-b:
+  data_shard02-c:
+  data_shard03-a:
+  data_shard03-b:
+  data_shard03-c:
 
 networks:
   net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.0.0/24
