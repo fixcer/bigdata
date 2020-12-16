@@ -43,9 +43,7 @@ docker-compose down
 
 ### Mongo Sharded Cluster 
 
----
-
-#### WARNING (Windows & OS X) 
+##### WARNING (Windows & OS X) 
 
 >The default Docker setup on Windows and OS X uses a VirtualBox VM to host the Docker daemon. 
 >Unfortunately, the mechanism VirtualBox uses to share folders between the host system and 
@@ -57,7 +55,6 @@ docker-compose down
 >&#8211; Docker Hub ([source here](https://github.com/docker-library/docs/blob/b78d49c9dffe5dd8b3ffd1db338c62b9e1fc3db8/mongo/content.md#where-to-store-data) 
 >or [here](https://github.com/docker-library/mongo/issues/232#issuecomment-355423692))
 
----
 
 ## <a name="reference"></a>Reference
 
