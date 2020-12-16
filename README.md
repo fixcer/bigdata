@@ -6,6 +6,7 @@ Learn Apache Spark through its **Python** (PySpark) API by running the Jupyter n
 ## Contents
 
 - [Quick Start](#quick-start)
+- [Tech](#tech)
 - [Reference](#reference)
 
 ## <a name="quick-start"></a>Quick Start
@@ -40,6 +41,7 @@ docker-compose up -d
 ```bash
 docker-compose down
 ```
+## <a name="tech"></a>Tech
 
 ### Mongo Sharded Cluster 
 
