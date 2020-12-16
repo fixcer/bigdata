@@ -57,6 +57,16 @@ docker-compose down
 >&#8211; Docker Hub ([source here](https://github.com/docker-library/docs/blob/b78d49c9dffe5dd8b3ffd1db338c62b9e1fc3db8/mongo/content.md#where-to-store-data) 
 >or [here](https://github.com/docker-library/mongo/issues/232#issuecomment-355423692))
 
+##### Mongo Components
+
+* Config Server (3 member replica set): `configsvr01`,`configsvr02`,`configsvr03`
+* 3 Shards (each a 3 member `PSS` replica set):
+	* `shard01-a`,`shard01-b`, `shard01-c`
+	* `shard02-a`,`shard02-b`, `shard02-c`
+	* `shard03-a`,`shard03-b`, `shard03-c`
+* 2 Routers (mongos): `router01`, `router02`
+
+<img src="https://raw.githubusercontent.com/minhhungit/mongodb-cluster-docker-compose/master/images/sharding-and-replica-sets.png" style="width: 100%;" />
 
 ## <a name="reference"></a>Reference
 
