@@ -35,7 +35,7 @@ Learn Apache Spark through its **Python** (PySpark) API by running the Jupyter n
 docker-compose up -d
 ```
 
-3. Stop the cluster by typing
+3. Remove the cluster by typing
 
 ```bash
 docker-compose down
@@ -46,3 +46,4 @@ docker-compose down
 - [Andre Marcos Perez](https://github.com/cluster-apps-on-docker/spark-standalone-cluster-on-docker)
 - [Big Data Europe - Hadoop Docker](https://github.com/big-data-europe/docker-hadoop)
 - [Big Data Europe - Spark Docker](https://github.com/big-data-europe/docker-spark)
+- [Minhhungit](https://github.com/minhhungit/mongodb-cluster-docker-compose)
