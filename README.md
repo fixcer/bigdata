@@ -3,6 +3,7 @@
 Learn Big Data through its **Python** (PySpark) API by running the Jupyter notebooks with examples on how to read, process and write data.
 
 <img src="https://dytvr9ot2sszz.cloudfront.net/wp-content/uploads/2018/02/Kafka-Hadoop-Spark-Architecture-1024x666.png" style="width: 100%;" />
+<img src="https://i.ibb.co/bR5YXxp/kafka-kibana.png" style="width: 120%;" />
 
 ## Contents
 
@@ -35,6 +36,7 @@ Learn Big Data through its **Python** (PySpark) API by running the Jupyter noteb
 
 ```bash
 docker-compose up -d
+./config.sh
 ```
 
 3. Remove the cluster by typing
