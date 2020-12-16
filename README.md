@@ -17,10 +17,10 @@ Learn Apache Spark through its **Python** (PySpark) API by running the Jupyter n
 | Hadoop               | [localhost:9870](http://localhost:9870/)   |
 | MapReduce            | [localhost:8089](http://localhost:8089/)   |
 | HUE                  | [localhost:8088](http://localhost:8088/)   |
-| Router Mongo Cluster | [localhost:21017](http://localhost:21017/) |
+| Mongo Cluster        | [localhost:21017](http://localhost:21017/) |
 | Kafka Manager        | [localhost:9000](http://localhost:9000/)   |
 | JupyterLab           | [localhost:8888](http://localhost:8888/)   |
-| Apache Spark Master  | [localhost:8080](http://localhost:8080/)   |
+| Spark Master         | [localhost:8080](http://localhost:8080/)   |
 
 ### Prerequisites
 
@@ -41,9 +41,27 @@ docker-compose up -d
 docker-compose down
 ```
 
+### Mongo Sharded Cluster 
+
+---
+
+#### WARNING (Windows & OS X) 
+
+>The default Docker setup on Windows and OS X uses a VirtualBox VM to host the Docker daemon. 
+>Unfortunately, the mechanism VirtualBox uses to share folders between the host system and 
+>the Docker container is not compatible with the memory mapped files used by MongoDB 
+>(see [vbox bug](https://www.virtualbox.org/ticket/819), [docs.mongodb.org](https://docs.mongodb.com/manual/administration/production->notes/#fsync-on-directories) 
+>and related [jira.mongodb.org bug](https://jira.mongodb.org/browse/SERVER-8600)). 
+>This means that it is not possible to run a MongoDB container with the data directory mapped to the host.
+>
+>&#8211; Docker Hub ([source here](https://github.com/docker-library/docs/blob/b78d49c9dffe5dd8b3ffd1db338c62b9e1fc3db8/mongo/content.md#where-to-store-data) 
+>or [here](https://github.com/docker-library/mongo/issues/232#issuecomment-355423692))
+
+---
+
 ## <a name="reference"></a>Reference
 
-- [Andre Marcos Perez](https://github.com/cluster-apps-on-docker/spark-standalone-cluster-on-docker)
+- [André Perez](https://github.com/cluster-apps-on-docker/spark-standalone-cluster-on-docker)
 - [Big Data Europe - Hadoop Docker](https://github.com/big-data-europe/docker-hadoop)
 - [Big Data Europe - Spark Docker](https://github.com/big-data-europe/docker-spark)
 - [Minhhungit](https://github.com/minhhungit/mongodb-cluster-docker-compose)
