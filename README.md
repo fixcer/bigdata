@@ -1,7 +1,8 @@
-# Apache Spark Standalone Cluster on Docker
+# BigData
 
-This project gives you an **Apache Spark** cluster in standalone mode with a **JupyterLab** interface built on top of **Docker**.
-Learn Apache Spark through its **Python** (PySpark) API by running the Jupyter notebooks with examples on how to read, process and write data.
+Learn Big Data through its **Python** (PySpark) API by running the Jupyter notebooks with examples on how to read, process and write data.
+
+<img src="https://dytvr9ot2sszz.cloudfront.net/wp-content/uploads/2018/02/Kafka-Hadoop-Spark-Architecture-1024x666.png" style="width: 100%;" />
 
 ## Contents
 
@@ -42,6 +43,15 @@ docker-compose up -d
 docker-compose down
 ```
 ## <a name="tech"></a>Tech
+
+### Hadoop
+
+<img src="https://images.prismic.io/clubhouse/81445563b0f9a0f7f1c09860c1bc8fc7980fa5d1_hadoop-data-nodes.png" style="width: 50%;" />
+
+
+### Apache Spark Standalone Cluster
+
+<img src="https://i.ibb.co/Pz4KsWZ/cluster-architecture.png" style="width: 100%;" />
 
 ### Mongo Sharded Cluster 
 
