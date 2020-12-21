@@ -80,7 +80,7 @@ docker-compose down
 
 <img src="https://raw.githubusercontent.com/minhhungit/mongodb-cluster-docker-compose/master/images/sharding-and-replica-sets.png" style="width: 100%;" />
 
-## <a name="reference"></a>Reference
+## <a name="reference"></a>References
 
 - [André Perez](https://github.com/cluster-apps-on-docker/spark-standalone-cluster-on-docker)
 - [Big Data Europe - Hadoop Docker](https://github.com/big-data-europe/docker-hadoop)
