@@ -20,7 +20,7 @@ Learn Big Data through its **Python** (PySpark) API by running the Jupyter noteb
 | Hadoop               | [localhost:9870](http://localhost:9870/)   |
 | MapReduce            | [localhost:8089](http://localhost:8089/)   |
 | HUE                  | [localhost:8088](http://localhost:8088/)   |
-| Mongo Cluster        | [localhost:21017](http://localhost:21017/) |
+| Mongo Cluster        | [localhost:21017](http://localhost:27017/) |
 | Kafka Manager        | [localhost:9000](http://localhost:9000/)   |
 | JupyterLab           | [localhost:8888](http://localhost:8888/)   |
 | Spark Master         | [localhost:8080](http://localhost:8080/)   |
